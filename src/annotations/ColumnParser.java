@@ -6,7 +6,8 @@ import java.lang.reflect.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import business.Klant;
+import domain.Klant;
+
 import java.lang.Exception;
 
 public class ColumnParser {
