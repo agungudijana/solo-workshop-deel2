@@ -53,14 +53,50 @@ public class Artikel {
 	}
 	
 	
+	@Override
 	public String toString(){
 		return 	"\nArtikel Id: " + id + 		
 		"\tArtikel naam: " + naam + "\tOmschrijving: " + omschrijving +
 		"\tArtikel prijs: " + prijs;
 	}
 	
-	public int hashCode(){
-		return (int) id;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((naam == null) ? 0 : naam.hashCode());
+		result = prime * result + ((omschrijving == null) ? 0 : omschrijving.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(prijs);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Artikel other = (Artikel) obj;
+		if (id != other.id)
+			return false;
+		if (naam == null) {
+			if (other.naam != null)
+				return false;
+		} else if (!naam.equals(other.naam))
+			return false;
+		if (omschrijving == null) {
+			if (other.omschrijving != null)
+				return false;
+		} else if (!omschrijving.equals(other.omschrijving))
+			return false;
+		if (Double.doubleToLongBits(prijs) != Double.doubleToLongBits(other.prijs))
+			return false;
+		return true;
 	}
 }
 

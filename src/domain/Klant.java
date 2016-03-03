@@ -8,8 +8,6 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import annotations.*;
 
-import java.lang.annotation.*;
-
 
 
 @Entity
@@ -111,7 +109,7 @@ public class Klant {
 	}
 	
 	
-	
+	/*
 	@Override 
 	public String toString(){
 		return  "\n\tKlant_id: " 	+ id +
@@ -138,10 +136,71 @@ public class Klant {
 	
 	    return true;
 	  }
+	*/
 	
-	public int hashCode(){
-	     return (int) id * voornaam.hashCode() * achternaam.hashCode();
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((accountSet == null) ? 0 : accountSet.hashCode());
+		result = prime * result + ((achternaam == null) ? 0 : achternaam.hashCode());
+		result = prime * result + ((bestellingSet == null) ? 0 : bestellingSet.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((factuurSet == null) ? 0 : factuurSet.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((tussenvoegsel == null) ? 0 : tussenvoegsel.hashCode());
+		result = prime * result + ((voornaam == null) ? 0 : voornaam.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Klant other = (Klant) obj;
+		if (accountSet == null) {
+			if (other.accountSet != null)
+				return false;
+		} else if (!accountSet.equals(other.accountSet))
+			return false;
+		if (achternaam == null) {
+			if (other.achternaam != null)
+				return false;
+		} else if (!achternaam.equals(other.achternaam))
+			return false;
+		if (bestellingSet == null) {
+			if (other.bestellingSet != null)
+				return false;
+		} else if (!bestellingSet.equals(other.bestellingSet))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (factuurSet == null) {
+			if (other.factuurSet != null)
+				return false;
+		} else if (!factuurSet.equals(other.factuurSet))
+			return false;
+		if (id != other.id)
+			return false;
+		if (tussenvoegsel == null) {
+			if (other.tussenvoegsel != null)
+				return false;
+		} else if (!tussenvoegsel.equals(other.tussenvoegsel))
+			return false;
+		if (voornaam == null) {
+			if (other.voornaam != null)
+				return false;
+		} else if (!voornaam.equals(other.voornaam))
+			return false;
+		return true;
 	}
 }
 
