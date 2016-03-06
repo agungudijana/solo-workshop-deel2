@@ -6,6 +6,9 @@ import java.util.Set;
 public class Factuur {
 	
 	
+	public Factuur() {
+	}
+
 	private long id;
 	private String factuurNummer;
 	private Date bestelDatum;

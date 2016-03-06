@@ -4,6 +4,9 @@ import java.util.Date;
 
 public class Betaling {
 		
+	public Betaling() {
+	}
+
 	private long id;
 	private Date betaalDatum;
 	private Klant klant;

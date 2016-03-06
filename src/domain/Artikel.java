@@ -7,6 +7,9 @@ import annotations.*;
 public class Artikel {
 
 
+	public Artikel() {
+	}
+
 	@Id
 	@Column
 	private long id;

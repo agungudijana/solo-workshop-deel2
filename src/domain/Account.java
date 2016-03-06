@@ -4,6 +4,9 @@ public class Account {
 	
 	
 	
+	public Account() {
+	}
+
 	private long id;
 	private String naam;
 	private Klant klant;

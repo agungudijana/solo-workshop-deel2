@@ -3,11 +3,15 @@ package domain;
 import java.util.Set;
 
 public class Bestelling {
+
 	private long id;
 	private String bestelNummer;
 	private java.util.Date bestelDatum;
 	private Set<BestelArtikel> bestelArtikelSet;
 	private Set<Factuur> factuurSet;
+	
+	public Bestelling() {
+	}
 
 	public long getBestelling_id() {
 		return id;

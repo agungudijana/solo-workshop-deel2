@@ -2,6 +2,9 @@ package domain;
 
 public class BestelArtikel {
 	
+	public BestelArtikel() {
+	}
+
 	private long id;
 	private Artikel artikel;
 	private Bestelling bestelling;
