@@ -1,20 +1,45 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-public class Factuur {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Factuur implements Serializable {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "factuur_id")
+	private long id;
+	
+	@Column(name = "factuurnummer")
+	private String factuurNummer;
+	
+	@Column
+	private Date bestelDatum;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy= "id")
+	private Set<Betaling> betalingSet;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "bestelling_id")
+	private Bestelling bestelling;
 	
 	public Factuur() {
 	}
 
-	private long id;
-	private String factuurNummer;
-	private Date bestelDatum;
-	private Set<Betaling> betalingSet;
-	private Bestelling bestelling;
-	
 	public long getFactuur_id() {
 		return id;
 	}

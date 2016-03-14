@@ -1,13 +1,32 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Bestelling {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+public class Bestelling implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "bestelling_id")
 	private long id;
+	
+	@Column
 	private String bestelNummer;
+	
+	@Column
 	private java.util.Date bestelDatum;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="id")
 	private Set<BestelArtikel> bestelArtikelSet;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="id")
 	private Set<Factuur> factuurSet;
 	
 	public Bestelling() {

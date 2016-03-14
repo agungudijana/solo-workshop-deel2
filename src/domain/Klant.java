@@ -1,12 +1,27 @@
 package domain;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
 import annotations.*;
+import business.Adres;
+import business.AdresType;
 
 
 
@@ -15,19 +30,39 @@ import annotations.*;
 public class Klant {
 	
 
-	@Column
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "klant_id")
 	private long id;
 	
 	@Column
 	private String voornaam;
+	
+	@Column
 	private String achternaam;
+	
+	@Column
 	private String tussenvoegsel;
+	
+	@Column
 	private String email;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="id")
 	private Set<Bestelling> bestellingSet;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="id")
 	private Set<Factuur> factuurSet;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="id")
 	private Set<Account> accountSet;
 	
+	@ManyToMany
+	@JoinTable(name = "klant_adres")
+	@JoinColumns({
+			@JoinColumn(name = "klant_id", referencedColumnName = "klant_id"), 
+			@JoinColumn(name = "adrestype_id", referencedColumnName = "adrestype_id"), 
+			@JoinColumn(name = "adres_id", referencedColumnName = "adres_id")})
+	private Map<Adres, AdresType> adresMap = new HashMap <Adres, AdresType>();
 	
 	public Klant() {}
 	

@@ -1,13 +1,43 @@
 package domain;
 
+import java.io.Serializable;
 
-public class Adres {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Adres implements Serializable {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "adres_id")
 	private long id;
+	
+	@Column
 	private String straatnaam;
+	
+	@Column
 	private String postcode;
+
+	@Column
 	private String toevoeging;
+	
+	@Column
 	private int huisnummer;
+	
+	@Column
 	private String woonplaats;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "adrestype_id")
 	private AdresType adrestype;
 
 	public Adres(){}

@@ -1,16 +1,38 @@
 package domain;
 
-public class Account {
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Account implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "account_id")
+	private long id;
+		
+	@Column(name = "account_name")
+	private String naam;
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "klant_id")
+	private Klant klant;
 	
+	@Column(name = "creatie_datum")
+	private java.util.Date creatieDatum;
 	
 	public Account() {
 	}
-
-	private long id;
-	private String naam;
-	private Klant klant;
-	private java.util.Date creatieDatum;
 	
 	public long getAccount_id () {
 		return id;

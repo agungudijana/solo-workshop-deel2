@@ -23,5 +23,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Book/Lib/slf4j"/>
+	<classpathentry kind="lib" path="C:/Book/Lib/c3po"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

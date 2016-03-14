@@ -1,27 +1,35 @@
 package domain;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import annotations.*;
 
 @Entity
 @Table
-public class Artikel {
-
-
-	public Artikel() {
-	}
+public class Artikel implements Serializable {
 
 	@Id
-	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "artikel_id")
 	private long id;
 	
-	@Column
+	@Column(name = "artikel_naam")
 	private String naam;
 	
-	@Column
+	@Column(name = "artikel_prijs")
 	private double prijs; 
 	
+	@Column
 	private String omschrijving;
 	
+	
+	public Artikel() {
+	}
 	
 	public long getArtikel_id() {
 		return id;

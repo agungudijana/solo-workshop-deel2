@@ -1,17 +1,45 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Betaling {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import business.Betaalwijze;
+
+public class Betaling implements Serializable {
 		
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "betaling_id")
+	private long id;
+	
+	@Column
+	private Date betaalDatum;
+	
+	@ManyToOne
+	@JoinColumn(name = "betaalwijze_id")
+	private Betaalwijze betaalwijze;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "klant_id")
+	private Klant klant;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "factuur_id")
+	private Factuur factuur;
+	
+	@Column
+	private String betalingsGegevens;
+	
 	public Betaling() {
 	}
-
-	private long id;
-	private Date betaalDatum;
-	private Klant klant;
-	private Factuur factuur;
-	private String betalingsGegevens;
 	
 	public long getBetaling_id() {
 		return id;
@@ -43,6 +71,14 @@ public class Betaling {
 	
 	public void setFactuur() {
 		this.factuur = factuur;
+	}
+	
+	public Betaalwijze getBetaalwijze(){
+		return betaalwijze;
+	}
+	
+	public void setBetaalwijze(Betaalwijze betaalwijze){
+		this.betaalwijze = betaalwijze;
 	}
 	
 	public String getBetalingsGegevens() {

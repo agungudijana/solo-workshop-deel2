@@ -1,15 +1,39 @@
 package domain;
 
-public class BestelArtikel {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class BestelArtikel implements Serializable {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "bestelartikel_id")
+	private long id;
+	
+	@ManyToOne
+	@JoinColumn(name = "artikel_id")
+	private Artikel artikel;
+	
+	@ManyToOne
+	@JoinColumn(name = "bestelling_id")
+	private Bestelling bestelling;
+	
+	@Column
+	private int aantal;
 	
 	public BestelArtikel() {
 	}
 
-	private long id;
-	private Artikel artikel;
-	private Bestelling bestelling;
-	private int aantal;
-	
 	public long getBestelArtikel_id() {
 		return id;
 	}
