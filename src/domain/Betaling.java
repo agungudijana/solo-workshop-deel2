@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import business.Betaalwijze;
+import domain.BetaalWijzeEnum;
 
 public class Betaling implements Serializable {
 		
@@ -25,7 +25,7 @@ public class Betaling implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "betaalwijze_id")
-	private Betaalwijze betaalwijze;
+	private BetaalWijzeEnum betaalwijze;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "klant_id")
@@ -73,11 +73,11 @@ public class Betaling implements Serializable {
 		this.factuur = factuur;
 	}
 	
-	public Betaalwijze getBetaalwijze(){
+	public BetaalWijzeEnum getBetaalwijze(){
 		return betaalwijze;
 	}
 	
-	public void setBetaalwijze(Betaalwijze betaalwijze){
+	public void setBetaalwijze(BetaalWijzeEnum betaalwijze){
 		this.betaalwijze = betaalwijze;
 	}
 	
